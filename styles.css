@@ -7,6 +7,7 @@
   --input-bg: #ffffff;
 }
 
+
 body.dark-mode {
   --bg: #1d1f23;
   --text: #ffffff;
@@ -40,6 +41,7 @@ body {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  
 }
 
 body.dark-mode .navbar {
@@ -61,10 +63,22 @@ body.dark-mode .navbar {
   margin-right: 20px;
 }
 
+
 .navbar a {
   color: var(--text);
   text-decoration: none;
   font-weight: 500;
+  padding: 10px 15px;
+  display: inline-block;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover effect just like step-card */
+.navbar a:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 4, 0, 0.3); /* same red glow */
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .navbar button {
@@ -74,6 +88,37 @@ body.dark-mode .navbar {
   color: var(--text);
   cursor: pointer;
 }
+
+
+.toggle-btn {
+  font-size: 22px;
+  padding: 12px 18px;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  color: #b8312f;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2),
+              -4px -4px 10px rgba(255, 255, 255, 0.7);
+}
+
+body.dark-mode .toggle-btn {
+  background: linear-gradient(145deg, #2a2d31, #1f2125);
+  color: #ffffff;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5),
+              -4px -4px 10px rgba(255, 255, 255, 0.05);
+}
+
+.toggle-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(184, 49, 47, 0.5); /* visible in light mode */
+}
+
+body.dark-mode .toggle-btn:hover {
+  box-shadow: 0 0 25px rgba(255, 100, 100, 0.8); /* brighter red glow for dark mode */
+}
+
 
 /* --- Hero Section --- */
 /* --- Hero Section (More Attractive Version) --- */
@@ -91,7 +136,7 @@ body.dark-mode .navbar {
 .hero h1 {
   font-size: 50px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
   animation: fadeZoom 1s ease-out forwards;
   opacity: 0;
   transform: scale(0.9);
@@ -99,7 +144,7 @@ body.dark-mode .navbar {
 
 .hero p {
   font-size: 20px;
-  margin: 20px 0;
+  margin: 30px 0;
   animation: fadeUp 1.2s ease-out forwards;
   opacity: 0;
   transform: translateY(30px);
@@ -120,6 +165,11 @@ body.dark-mode .navbar {
   opacity: 0;
   transform: translateY(30px);
 }
+
+#recievebtn{
+  margin-left: 20px;
+}
+  
 
 .hero button:hover {
   background: #ffe3e3;
@@ -199,30 +249,92 @@ body.dark-mode .step-card {
 }
 
 /* --- Newsletter Section --- */
-.newsletter {
-  background: var(--card);
-  padding: 40px 20px;
+.newsletter-container {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  padding: 30px 20px;
   text-align: center;
+  max-width: 600px;
+  margin: 40px auto;
+  /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.newsletter input {
-  padding: 10px 15px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 4px;
-  width: 250px;
-  background-color: var(--input-bg);
-  color: var(--text);
+
+
+.newsletter-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px var(--accent);
 }
 
-.newsletter button {
-  padding: 10px 20px;
-  background-color: var(--accent);
+.newsletter-container h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
   color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
+
+.newsletter-container p {
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  background-color: #2a2d31;
+  color: white;
+  font-size: 16px;
+  min-width: 250px;
+  outline: none;
+}
+
+.newsletter-form button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background-color: #ff4b4b;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background-color: #ff6f6f;
+}
+
+.thank-you-message {
+  display: none;
+  color: #90ee90;
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: 18px;
+  animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 
 /* --- Compatibility Table (Reverted to Original Table) --- */
 .table-container {
@@ -282,8 +394,7 @@ body.dark-mode .table-card {
 }
 
 body.dark-mode .donors {
-  background-color: #2f3237;
-}
+background: rgba(255, 255, 255, 0.05);}
 
 .donors h2 {
   font-size: 32px;
@@ -345,8 +456,7 @@ body.dark-mode .donor-card {
 }
 
 body.dark-mode .blood-bank {
-  background-color: #2f3237;
-}
+background: rgba(255, 255, 255, 0.05);}
 
 .blood-bank h2 {
   font-size: 32px;
@@ -362,7 +472,7 @@ body.dark-mode .blood-bank {
 }
 
 .info-card {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 30px;
@@ -408,3 +518,53 @@ body.dark-mode .info-card {
 }
 
 
+.hero-btn {
+  display: inline-block;
+  border: none;
+  padding: 14px 32px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #ffffff;
+  color: #b8312f;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  animation: fadeUp 1.4s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.hero-btn:hover {
+  background: #ffe3e3;
+  color: #7c1c1a;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(255, 255, 255, 0.3);
+}
+
+
+
+/* Fix newsletter colors in light mode */
+body:not(.dark-mode) .newsletter-container {
+  background-color: var(--card);
+  color: var(--text);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body:not(.dark-mode) .newsletter-container h3 {
+  color: var(--text);
+}
+
+body:not(.dark-mode) .newsletter-container p {
+  color: #555;
+}
+
+body:not(.dark-mode) .newsletter-form input[type="email"] {
+  background-color: var(--input-bg);
+  color: var(--text);
+}
+
+body:not(.dark-mode) .thank-you-message {
+  color: green;
+}

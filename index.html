@@ -13,29 +13,34 @@
   <div class="logo">🩸 Blood Bank</div>
   <ul>
     <li><a href="#hero">Home</a></li>
-    <li><a href="#donate">Donate Blood</a></li>
-    <li><a href="#request">Request Blood</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button id="toggleDark">🌙</button>
+    <li><a href="donate.html">Donate Blood</a></li>
+    <li><a href="receive.html">Request Blood</a></li>
+    <li><a href="#how-it-works">About</a></li>
+    <li><a href="#login">Login</a></li>
+  </ul>  
+<button id="toggleDark" class="toggle-btn">☀️</button>
 </nav>
+
 
   </header>
 
   <section class="hero">
     <h1>Blood Bank Management System</h1>
     <p>A Lifesaver For Those In Need</p>
-    <button id="donateBtn">Donate Now</button>
+    <a href="donate.html" class="hero-btn">Donate Now</a>
+    <!-- <button id="donateBtn" onclick="window.location.href='donate.html'">Donate Blood</button> -->
+    <button id="recievebtn" onclick="window.location.href='receive.html'">Recieve blood</button>
+
+    
   </section>
 
-  <section class="why-donate">
+  <section class="why-donate animated-section">
     <h2>WHY DONATE BLOOD</h2>
     <p>Donating blood saves lives. Your contribution can help patients undergoing surgery, cancer treatment, and those with chronic illnesses.</p>
     <p>By donating blood, you are giving the gift of life and supporting your community in times of need.</p>
   </section>
 
-<section class="how-it-works">
+<section class="how-it-works animated-section">
   <h2>HOW IT WORKS</h2>
   <div class="steps">
     
@@ -61,7 +66,7 @@
 </section>
 
 
-  <section class="compatibility">
+  <section class="compatibility animated-section">
   <h2>Blood Compatibility Chart</h2>
   <p>Check which blood group can donate to or receive from others.</p>
   <div class="table-container">
@@ -110,29 +115,7 @@
 
 
 
-  <section class="donors">
-    <h2>🌟 Our Lifesaving Heroes 🌟</h2>
-    <div class="donor-stats">
-      <div class="donor-card">
-        <div class="icon">👩‍⚕️</div>
-        <h3>Jhanvi Sharma</h3>
-        <p>Donated: A+</p>
-      </div>
-      <div class="donor-card">
-        <div class="icon">🧑‍🔬</div>
-        <h3>Arjun Patel</h3>
-        <p>Donated: B-</p>
-      </div>
-      <div class="donor-card">
-        <div class="icon">👨‍⚕️</div>
-        <h3>Vikas Singh</h3>
-        <p>Donated: O+</p>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="blood-bank">
+  <section class="blood-bank animated-section">
   <h2>🏥 Nearest Blood Banks 🏥</h2>
   <div class="card-section">
 
@@ -171,15 +154,70 @@
   </div>
 </section>
 
-
-
-
-  <section class="newsletter">
-    <h3>Subscribe to our newsletter</h3>
-    <input type="email" placeholder="Enter your email" />
-    <button>Subscribe</button>
+<section class="donors animated-section">
+    <h2>🌟 Our Lifesaving Heroes 🌟</h2>
+    <div class="donor-stats">
+      <div class="donor-card">
+        <div class="icon">👩‍⚕️</div>
+        <h3>Riya Sharma</h3>
+        <p>Donated: A+</p>
+      </div>
+      <div class="donor-card">
+        <div class="icon">🧑‍🔬</div>
+        <h3>Arjun Patel</h3>
+        <p>Donated: B-</p>
+      </div>
+      <div class="donor-card">
+        <div class="icon">👨‍⚕️</div>
+        <h3>Vikas Singh</h3>
+        <p>Donated: O+</p>
+      </div>
+    </div>
   </section>
 
+
+ <section class="newsletter animated-section">
+  <div class="newsletter-container">
+    <h3>📩 Subscribe to our Newsletter</h3>
+    <p>Stay updated with our blood donation drives and life-saving news.</p>
+    <div class="newsletter-form">
+      <input type="email" id="newsletterEmail" placeholder="Enter your email" required />
+      <button type="submit" id="subscribeBtn">Subscribe</button>
+    </div>
+    <div id="subscribeMessage" style="display: none; color: #4ef04e; margin-top: 10px;">
+      ✅ Thank you for subscribing!
+    </div>
+    <div id="errorMessage" style="display: none; color: #ff4b4b; margin-top: 10px;">
+      ❌ Please enter a valid email address.
+    </div>
+  </div>
+</section>
+
   <script src="script.js"></script>
+
+
 </body>
+
+<script>
+  const emailInput = document.getElementById("newsletterEmail");
+  const subscribeBtn = document.getElementById("subscribeBtn");
+  const successMsg = document.getElementById("subscribeMessage");
+  const errorMsg = document.getElementById("errorMessage");
+
+  subscribeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+
+    if (email.includes("@")) {
+      successMsg.style.display = "block";
+      errorMsg.style.display = "none";
+      emailInput.value = "";
+    } else {
+      successMsg.style.display = "none";
+      errorMsg.style.display = "block";
+    }
+  });
+</script>
+
+
 </html>

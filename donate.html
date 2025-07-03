@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donate Blood Form</title>
+  <link rel="stylesheet" href="form-style.css" />
+</head>
+<body class="dark-mode">
+
+  <div class="form-wrapper">
+    <div class="form-container">
+      <h2>🩸 Donate Blood</h2>
+      <form id="donateForm">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="bloodGroup">Blood Group</label>
+          <select id="bloodGroup" required>
+            <option value="">Select</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select id="gender" required>
+            <option value="">Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input type="number" id="age" min="18" max="65" required />
+        </div>
+
+        <div class="form-group">
+          <label for="contact">Contact Number</label>
+          <input type="tel" id="contact" required />
+        </div>
+
+        <div class="form-group">
+          <label for="location">Your City</label>
+          <input type="text" id="location" required />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message (Optional)</label>
+          <textarea id="message" rows="3"></textarea>
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+      <div id="thankYouMsg" style="display: none; text-align: center; font-size: 20px; color: #ffffff; margin-top: 20px;">
+  ✅ Thank you for your valuable donation!
+</div>
+
+    </div>
+  </div>
+
+</body>
+<script>
+  const form = document.getElementById("donateForm"); // ✅ Fixed ID
+  const thankYouMsg = document.getElementById("thankYouMsg");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevents page refresh
+    form.style.display = "none"; // Hide form
+    thankYouMsg.style.display = "block"; // Show thank-you message
+  });
+</script>
+
+
+</html>
+
+<script>
+  document.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth) * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
+    document.body.style.setProperty('--x', `${x}%`);
+    document.body.style.setProperty('--y', `${y}%`);
+  });
+</script>
