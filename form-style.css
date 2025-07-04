@@ -131,3 +131,18 @@ select:-webkit-autofill {
 .form-container {
   animation: fadeSlideUp 1s ease-out;
 }
+
+.background-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0; /* Important: Keep it behind all elements */
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease;
+}
+

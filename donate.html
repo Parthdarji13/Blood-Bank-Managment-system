@@ -75,6 +75,7 @@
 
     </div>
   </div>
+<div class="cursor"></div>
 
 </body>
 <script>
@@ -98,4 +99,28 @@
     document.body.style.setProperty('--x', `${x}%`);
     document.body.style.setProperty('--y', `${y}%`);
   });
+</script>
+
+<script>
+    const bgCursor = document.createElement('div');
+  bgCursor.classList.add('background-cursor');
+  document.body.appendChild(bgCursor);
+
+  let mouseX = 0, mouseY = 0;
+  let posX = 0, posY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function updateCursor() {
+    posX += (mouseX - posX) * 0.1;
+    posY += (mouseY - posY) * 0.1;
+    bgCursor.style.left = `${posX}px`;
+    bgCursor.style.top = `${posY}px`;
+    requestAnimationFrame(updateCursor);
+  }
+
+  updateCursor();
 </script>

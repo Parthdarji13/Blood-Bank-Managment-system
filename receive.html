@@ -79,6 +79,7 @@
 
         <button type="submit">Submit</button>
       </form>
+      
       <div id="thankYouMsg" style="display: none; text-align: center; font-size: 20px; color: #ffffff; margin-top: 20px;">
         ✅ Your request has been received. We will contact you shortly!
       </div>
@@ -102,5 +103,33 @@
       document.body.style.setProperty('--y', `${y}%`);
     });
   </script>
+  <div class="cursor"></div>
+
+  <script>
+
+  const bgCursor = document.createElement('div');
+  bgCursor.classList.add('background-cursor');
+  document.body.appendChild(bgCursor);
+
+  let mouseX = 0, mouseY = 0;
+  let posX = 0, posY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function updateCursor() {
+    posX += (mouseX - posX) * 0.1;
+    posY += (mouseY - posY) * 0.1;
+    bgCursor.style.left = `${posX}px`;
+    bgCursor.style.top = `${posY}px`;
+    requestAnimationFrame(updateCursor);
+  }
+
+  updateCursor();
+
+  </script>
+
 </body>
 </html>

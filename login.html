@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="login-style.css">
+</head>
+<body>
+
+<div class="form-wrapper">
+  <div class="form-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+      </div>
+
+<div class="form-group password-group">
+  <label for="password">Password</label>
+  <div class="password-wrapper">
+    <input type="password" id="password" required>
+    <span id="togglePassword" class="eye-icon">👁️</span>
+  </div>
+</div>
+
+
+      <button type="submit">Login</button>
+    </form>
+
+    <p id="successMessage" class="success-message" style="display: none;">
+      ✅ Login Successful!
+    </p>
+  </div>
+</div>
+
+<div class="cursor"></div>
+
+
+<script>
+  const toggle = document.getElementById("togglePassword");
+  const password = document.getElementById("password");
+
+  toggle.addEventListener("click", () => {
+    const isPassword = password.type === "password";
+    password.type = isPassword ? "text" : "password";
+    toggle.textContent = isPassword ? "👁️‍🗨️" : "👁️"; // change icon
+  });
+</script>
+
+
+
+
+<script>
+
+  // Dummy Login Success (for demo)
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    document.getElementById("successMessage").style.display = "block";
+  });
+</script>
+
+<script>
+  // Cursor-following radial background
+  document.addEventListener("mousemove", function(e) {
+    const x = (e.clientX / window.innerWidth) * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
+    document.body.style.setProperty('--x', `${x}%`);
+    document.body.style.setProperty('--y', `${y}%`);
+  });
+</script>
+
+<script>
+
+ const bgCursor = document.createElement('div');
+  bgCursor.classList.add('background-cursor');
+  document.body.appendChild(bgCursor);
+
+  let mouseX = 0, mouseY = 0;
+  let posX = 0, posY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function updateCursor() {
+    posX += (mouseX - posX) * 0.1;
+    posY += (mouseY - posY) * 0.1;
+    bgCursor.style.left = `${posX}px`;
+    bgCursor.style.top = `${posY}px`;
+    requestAnimationFrame(updateCursor);
+  }
+
+  updateCursor();
+
+</script>
+
+
+</body>
+</html>

@@ -12,11 +12,12 @@
     <nav class="navbar">
   <div class="logo">🩸 Blood Bank</div>
   <ul>
+    <li><a id="clock-link"><span id="clock" class="nav-clock">00:00:00</span></a></li>
     <li><a href="#hero">Home</a></li>
     <li><a href="donate.html">Donate Blood</a></li>
     <li><a href="receive.html">Request Blood</a></li>
     <li><a href="#how-it-works">About</a></li>
-    <li><a href="#login">Login</a></li>
+    <li><a href="login.html">Login</a></li>
   </ul>  
 <button id="toggleDark" class="toggle-btn">☀️</button>
 </nav>
@@ -24,7 +25,7 @@
 
   </header>
 
-  <section class="hero">
+  <section id="hero" class="hero">
     <h1>Blood Bank Management System</h1>
     <p>A Lifesaver For Those In Need</p>
     <a href="donate.html" class="hero-btn">Donate Now</a>
@@ -40,7 +41,7 @@
     <p>By donating blood, you are giving the gift of life and supporting your community in times of need.</p>
   </section>
 
-<section class="how-it-works animated-section">
+<section id="how-it-works" class="how-it-works animated-section">
   <h2>HOW IT WORKS</h2>
   <div class="steps">
     
@@ -195,29 +196,19 @@
 
   <script src="script.js"></script>
 
-
-</body>
+<div class="cursor"></div>
 
 <script>
-  const emailInput = document.getElementById("newsletterEmail");
-  const subscribeBtn = document.getElementById("subscribeBtn");
-  const successMsg = document.getElementById("subscribeMessage");
-  const errorMsg = document.getElementById("errorMessage");
-
-  subscribeBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    const email = emailInput.value.trim();
-
-    if (email.includes("@")) {
-      successMsg.style.display = "block";
-      errorMsg.style.display = "none";
-      emailInput.value = "";
-    } else {
-      successMsg.style.display = "none";
-      errorMsg.style.display = "block";
-    }
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50);
   });
 </script>
+
+
+
+</body>
 
 
 </html>
