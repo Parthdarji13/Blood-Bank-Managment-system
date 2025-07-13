@@ -69,58 +69,91 @@
 
         <button type="submit">Submit</button>
       </form>
-      <div id="thankYouMsg" style="display: none; text-align: center; font-size: 20px; color: #ffffff; margin-top: 20px;">
-  ✅ Thank you for your valuable donation!
-</div>
 
+      <div id="thankYouMsg" style="display: none; text-align: center; font-size: 20px; color: #ffffff; margin-top: 20px;">
+        ✅ Thank you for your valuable donation!
+      </div>
     </div>
   </div>
-<div class="cursor"></div>
 
-</body>
-<script>
-  const form = document.getElementById("donateForm"); // ✅ Fixed ID
-  const thankYouMsg = document.getElementById("thankYouMsg");
+  <div class="cursor"></div>
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevents page refresh
-    form.style.display = "none"; // Hide form
-    thankYouMsg.style.display = "block"; // Show thank-you message
-  });
-</script>
+  <!-- ✅ Backend connection script -->
+  <script>
+    const form = document.getElementById("donateForm");
+    const thankYouMsg = document.getElementById("thankYouMsg");
 
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-</html>
+      const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        bloodGroup: document.getElementById("bloodGroup").value,
+        gender: document.getElementById("gender").value,
+        age: Number(document.getElementById("age").value),
+        phone: document.getElementById("contact").value,
+        city: document.getElementById("location").value,
+        message: document.getElementById("message").value,
+        date: new Date().toISOString()
+      };
 
-<script>
-  document.addEventListener('mousemove', e => {
-    const x = (e.clientX / window.innerWidth) * 100;
-    const y = (e.clientY / window.innerHeight) * 100;
-    document.body.style.setProperty('--x', `${x}%`);
-    document.body.style.setProperty('--y', `${y}%`);
-  });
-</script>
+      try {
+        const res = await fetch("http://localhost:3000/donate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        });
 
-<script>
+        if (res.ok) {
+          form.style.display = "none";
+          thankYouMsg.style.display = "block";
+          console.log("✅ Donation data submitted");
+        } else {
+          alert("❌ Submission failed. Try again.");
+        }
+      } catch (err) {
+        console.error("❌ Network error:", err);
+        alert("❌ Server not reachable");
+      }
+    });
+  </script>
+
+  <!-- Cursor glow script -->
+  <script>
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      document.body.style.setProperty('--x', `${x}%`);
+      document.body.style.setProperty('--y', `${y}%`);
+    });
+  </script>
+
+  <!-- Cursor animation -->
+  <script>
     const bgCursor = document.createElement('div');
-  bgCursor.classList.add('background-cursor');
-  document.body.appendChild(bgCursor);
+    bgCursor.classList.add('background-cursor');
+    document.body.appendChild(bgCursor);
 
-  let mouseX = 0, mouseY = 0;
-  let posX = 0, posY = 0;
+    let mouseX = 0, mouseY = 0;
+    let posX = 0, posY = 0;
 
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
 
-  function updateCursor() {
-    posX += (mouseX - posX) * 0.1;
-    posY += (mouseY - posY) * 0.1;
-    bgCursor.style.left = `${posX}px`;
-    bgCursor.style.top = `${posY}px`;
-    requestAnimationFrame(updateCursor);
-  }
+    function updateCursor() {
+      posX += (mouseX - posX) * 0.1;
+      posY += (mouseY - posY) * 0.1;
+      bgCursor.style.left = `${posX}px`;
+      bgCursor.style.top = `${posY}px`;
+      requestAnimationFrame(updateCursor);
+    }
 
-  updateCursor();
-</script>
+    updateCursor();
+  </script>
+</body>
+</html>
