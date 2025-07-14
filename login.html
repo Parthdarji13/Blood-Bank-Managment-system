@@ -58,7 +58,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
   const password = document.getElementById("password").value;
 
   try {
-    const response = await fetch("http://localhost:3000/login", {
+    const res = await fetch("https://blood-bank-managment-system-production.up.railway.app/donate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
