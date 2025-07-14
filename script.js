@@ -1,9 +1,21 @@
- const toggleBtn = document.getElementById("toggleDark");
+const toggleBtn = document.getElementById("toggleDark");
 
 toggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  toggleBtn.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+  const body = document.body;
+
+  if (body.classList.contains("dark-mode")) {
+    // currently dark, switch to light
+    body.classList.remove("dark-mode");
+    body.classList.add("light-mode");
+    toggleBtn.textContent = "🌙";
+  } else {
+    // currently light, switch to dark
+    body.classList.remove("light-mode");
+    body.classList.add("dark-mode");
+    toggleBtn.textContent = "☀️";
+  }
 });
+
 
 const clock = document.getElementById('clock');
 

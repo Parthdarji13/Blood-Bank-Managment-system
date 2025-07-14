@@ -31,6 +31,33 @@ body {
 }
 
 
+.logo {
+  height: 60px;
+  width: 100px;            /* or adjust based on logo */
+  overflow: visible;
+  position: relative;
+}
+
+.logo-img {
+  max-height: 100px;        /* Bigger logo */
+  width: auto;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: none;
+}
+
+body.dark-mode .dark-logo {
+  display: block;
+}
+
+body.light-mode .light-logo {
+  display: block;
+}
+
+
+
 /* --- Navbar --- */
 .navbar {
   display: flex;
